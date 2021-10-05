@@ -1,7 +1,8 @@
 class CreateJoinTableUsersEvents < ActiveRecord::Migration[6.1]
   def change
-    create_join_table :users_events do |t|
-      t.index :users
-      t.index :events
+    create_join_table :users, :events, column_options: { null: true } do |t|
+      t.index :user_id
+      t.index :event_id
+    end
   end
 end
