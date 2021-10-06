@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
     def destroy
         profile = Profile.find(params[:id])
         profile.destroy
-        head: no_content
+        head :no_content
     end
 
     private
