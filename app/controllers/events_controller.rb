@@ -1,7 +1,10 @@
 class EventsController < ApplicationController
+    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+
     def index
         events = Event.all
-        render json: events, include: :activities 
+        render json: events
     end
 
     def create
@@ -30,5 +33,13 @@ class EventsController < ApplicationController
 
     def event_params
         params.permit(:event_name, :posting_date, :location, :desc)
+    end
+
+    def render_not_found_response
+        render json: { error: 'event not found' }, status: :not_found
+    end
+
+    def render_unprocessable_entity_response(invalid)
+        render json: { errors: invalid.record.errors }, status: :unprocessable_entity
     end
 end
