@@ -32,7 +32,7 @@ class ActivitiesController < ApplicationController
     private
 
     def activity_params
-        params.permit(:activity_name, :category_id)
+        params.permit(:id, :activity_name, :category_id)
     end
 
     def render_not_found_response
