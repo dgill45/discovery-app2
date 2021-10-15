@@ -30,11 +30,13 @@ ActiveRecord::Schema.define(version: 2021_10_10_202529) do
 
   create_table "events", force: :cascade do |t|
     t.string "desc"
+    t.bigint "activity_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "posting_date"
     t.string "location"
     t.string "event_name"
+    t.index ["activity_id"], name: "index_events_on_activity_id"
   end
 
   create_table "events_users", id: false, force: :cascade do |t|
@@ -48,8 +50,10 @@ ActiveRecord::Schema.define(version: 2021_10_10_202529) do
     t.string "username"
     t.string "email"
     t.string "password"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,4 +64,6 @@ ActiveRecord::Schema.define(version: 2021_10_10_202529) do
     t.string "username"
   end
 
+  add_foreign_key "events", "activities"
+  add_foreign_key "profiles", "users"
 end
