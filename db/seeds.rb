@@ -29,7 +29,7 @@ category4 = Category.create!(category_name: 'Group Dance')
 
 activity1 = Activity.create!(activity_name: 'Basketball', category_id: Category.first.id)
 activity2 = Activity.create!(activity_name: 'Crochet Class', category_id: Category.second.id)
-activity3 = Activity.create!(activity_name: 'Foo Fighters World Tour', category_id: Category.third.id)
+activity3 = Activity.create!(activity_name: 'Concerts', category_id: Category.third.id)
 activity4 = Activity.create!(activity_name: 'Learn to dance salsa', category_id: Category.fourth.id)
 
 event1 = Event.create!(event_name: 'Orange Park Basketball', posting_date: 10-31-2021, desc: "Fun times", activity_id: Activity.first.id)
